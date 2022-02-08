@@ -12,7 +12,6 @@ project "ImGui"
 		"imgui.cpp",
 		"imgui_draw.cpp",
 		"imgui_internal.h",
-		"imgui_tables.cpp",
 		"imgui_widgets.cpp",
 		"imstb_rectpack.h",
 		"imstb_textedit.h",
@@ -23,15 +22,17 @@ project "ImGui"
 	filter "system:windows"
 		systemversion "latest"
 		cppdialect "C++17"
-        staticruntime "on"
-
-    filter {"system:windows", "configurations:Release"}
-        buildoptions "/MT"
+		staticruntime "On"
+		defines 
+		{
+            "IMGUI_API=__declspec(dllexport)"
+		}
 
 	filter "system:linux"
 		pic "On"
 		systemversion "latest"
 		cppdialect "C++17"
+		staticruntime "On"
 
 	filter "configurations:Debug"
 		runtime "Debug"
